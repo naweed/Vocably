@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Border 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="Transparent"
+    Padding="0"
+    Stroke="{StaticResource WordleBorderColor}"
+    WidthRequest="62"
+    HeightRequest="64"
+    Opacity="0"
+    x:Class="XGENO.Vocably.ViewControls.WordleBox">
+    <Border.StrokeShape>
+        <RoundRectangle CornerRadius="4"/>
+     </Border.StrokeShape>
+    
+    <Label
+        x:Name="lblLetter"
+        HorizontalOptions="Fill"
+        VerticalOptions="Center"
+        HorizontalTextAlignment="Center"
+        VerticalTextAlignment="Center"
+        Style="{StaticResource WordleBoxTextStyle}" />
+    
+</Border>

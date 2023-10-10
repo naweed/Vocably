@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<views:ViewBase
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:XGENO.Wordly.Views"
+    xmlns:viewmodels="clr-namespace:XGENO.Wordly.ViewModels"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:TypeArguments="viewmodels:AboutUsPageViewModel"
+    ContentDisplayMode="NavigationBar"
+    PageMode="Modal"
+    PageTitle="{Binding Title}"
+    x:Class="XGENO.Wordly.Views.AboutUsPage">
+    
+    <views:ViewBase.PageContent>
+        <Grid>
+            <StackLayout
+                Orientation="Vertical"
+                Spacing="12"
+                Margin="32,24,32,0">
+
+                <Image
+                    Source="imgEmail"
+                    WidthRequest="124"
+                    HeightRequest="124"
+                    HorizontalOptions="Center"
+                    Margin="0,0,0,0"/>
+
+                <Label
+                    Style="{StaticResource RegularLightText16}"
+                    LineBreakMode="WordWrap"
+                    Margin="0,18,0,0">
+                    <Label.Text>
+                        We value your feedback and comments. Please reach out to us if you have a comment or suggestion to improve the app, or want to report a bug.
+                    </Label.Text>
+                </Label>
+
+                <!-- Send Feedback Button -->
+                <Button
+                    Style="{StaticResource PageButtonStyle}"
+                    Margin="0,16,0,0"
+                    Text="WRITE TO US"
+                    HorizontalOptions="Fill"
+                    Command="{Binding SendFeedbackCommand,Mode=OneWay}"/>                
+                
+
+            </StackLayout>
+        </Grid>
+    </views:ViewBase.PageContent>
+    
+</views:ViewBase>

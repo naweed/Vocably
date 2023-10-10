@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<views:ViewBase
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:XGENO.Wordly.Views"
+    xmlns:viewmodels="clr-namespace:XGENO.Wordly.ViewModels"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:TypeArguments="viewmodels:LeaderboardPageViewModel"
+    ContentDisplayMode="NavigationBar"
+    PageMode="Modal"
+    PageTitle="{Binding Title}"
+    x:Class="XGENO.Wordly.Views.LeaderboardPage">
+    
+    <views:ViewBase.PageContent>
+        <Grid>
+            <StackLayout
+                Orientation="Vertical"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Margin="48,0"
+                Spacing="16">
+
+                <Image
+                    Source="soon.png"
+                    HorizontalOptions="Center"
+                    WidthRequest="74"
+                    HeightRequest="74"
+                    Aspect="AspectFit" />
+
+                <Label
+                    Style="{StaticResource RegularLightText14}"
+                    Text="Coming Soon! Leaderboard is on its way. This will allow you to compete with players worldwide anonymously. Show who's the boss by sharing your progress, win ratios and stats."
+                    LineBreakMode="WordWrap"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center" />
+
+            </StackLayout>
+        </Grid>
+    </views:ViewBase.PageContent>
+    
+</views:ViewBase>

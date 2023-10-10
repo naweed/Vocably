@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net6.0;net6.0-android;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.19041.0</TargetFrameworks>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>disable</ImplicitUsings>
+
+		<!-- TODO: Remove -->
+		<MauiVersion>6.0.500-preview.1.6077</MauiVersion>
+
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Remove="CommunityToolkit.Mvvm" />
+	  <None Remove="MonkeyCache.FileStore" />
+	  <None Remove="Exceptions\" />
+	  <None Remove="Extensions\" />
+	  <None Remove="Controls\" />
+	  <None Remove="MVVM\" />
+	  <None Remove="Services\" />
+	  <None Remove="UI\" />
+	  <None Remove="SkiaSharp.Views.Maui.Controls" />
+	  <None Remove="SkiaSharp.Views.Maui.Core" />
+	  <None Remove="SkiaSharp.Views.Maui.Controls.Compatibility" />
+	</ItemGroup>
+	<ItemGroup>
+	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0-preview4" />
+	  <PackageReference Include="MonkeyCache.FileStore" Version="2.0.0-beta" />
+	  <PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="2.88.1-preview.75" />
+	  <PackageReference Include="SkiaSharp.Views.Maui.Core" Version="2.88.1-preview.75" />
+	  <PackageReference Include="SkiaSharp.Views.Maui.Controls.Compatibility" Version="2.88.1-preview.75" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Exceptions\" />
+	  <Folder Include="Extensions\" />
+	  <Folder Include="MVVM\" />
+	  <Folder Include="Services\" />
+	  <Folder Include="UI\" />
+	</ItemGroup>
+</Project>

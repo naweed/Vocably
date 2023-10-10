@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<views:ViewBase
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:XGENO.Wordly.Views"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:viewmodels="clr-namespace:XGENO.Wordly.ViewModels" 
+    xmlns:controls="clr-namespace:XGENO.Wordly.ViewControls"
+    x:TypeArguments="viewmodels:StartPageViewModel"
+    ContentDisplayMode="NavigationBar"
+    PageMode="Menu"
+    x:Name="RootPage"
+    PageTitle="{Binding Title}"
+    x:Class="XGENO.Wordly.Views.StartPage">
+
+    <!--<views:ViewBase.PageIcons>
+        <ImageButton
+            Source="icnHelp.png"
+            VerticalOptions="Center"
+            HorizontalOptions="End"
+            Style="{StaticResource IconButtonStyle}" 
+            xct:TouchEffect.Command="{Binding RulesPageCommand, Mode=OneWay}" />
+    </views:ViewBase.PageIcons>-->
+
+    <views:ViewBase.PageContent>
+        <Grid
+            Margin="36"
+            RowDefinitions="*,Auto">
+
+            <!-- Error Indicator -->
+            <controls:ErrorIndicator
+                Grid.RowSpan="2"
+                Grid.Row="0"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                IsError="{Binding IsErrorState, Mode=OneWay}"
+                ErrorImage="{Binding ErrorImage, Mode=OneWay}"
+                ErrorText="{Binding ErrorMessage, Mode=OneWay}" />
+
+
+            <Frame
+                Grid.Row="1"
+                Padding="26,18"
+                BackgroundColor="#252525"
+                HasShadow="True"
+                BorderColor="Transparent"
+                HorizontalOptions="Fill"
+                VerticalOptions="Start"
+                CornerRadius="12"
+                Margin="0,0,0,24"
+                IsVisible="{Binding DataLoaded, Mode=OneWay}">
+
+                <Label
+                    Style="{StaticResource RegularLightText14}"
+                    TextColor="White"
+                    Text="{Binding HeroText}"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    LineHeight="1.25"
+                    LineBreakMode="WordWrap" />
+
+            </Frame>
+
+
+
+            <!-- Play Button -->
+            <Grid
+                Grid.Row="0"
+                HorizontalOptions="Center"
+                IsVisible="{Binding IsButtonVisible, Mode=OneWay}"
+                VerticalOptions="Center">
+
+                <Ellipse
+                    x:Name="borderGradientOuter"
+                    StrokeThickness="0"
+                    Stroke="#44C5C5C5"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    WidthRequest="192"
+                    HeightRequest="192" />
+
+                <Ellipse
+                    x:Name="borderGradientMiddle"
+                    StrokeThickness="0"
+                    Stroke="#55C5C5C5"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    WidthRequest="176"
+                    HeightRequest="176" />
+
+                <Ellipse
+                    x:Name="borderGradientInner"
+                    StrokeThickness="0"
+                    Stroke="#77C5C5C5"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    WidthRequest="160"
+                    HeightRequest="160"/>
+
+                <Button
+                    x:Name="btnPlayGame"
+                    Style="{StaticResource PageButtonStyle}"
+                    Text="PLAY"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Command="{Binding PlayGameCommand, Mode=OneWay}"
+                    BorderColor="#BBC5C5C5"
+                    BorderWidth="4"
+                    HeightRequest="142"
+                    WidthRequest="142"
+                    CornerRadius="71"
+                    FontSize="32" />
+
+            </Grid>
+            
+
+            <!-- Busy Indicator -->
+            <controls:LoadingIndicator
+                Grid.RowSpan="2"
+                Grid.Row="0"
+                IsBusy="{Binding IsBusy, Mode=OneWay}"
+                LoadingText="{Binding LoadingText, Mode=OneWay}"
+                HorizontalOptions="Center"
+                VerticalOptions="Center" />
+
+        </Grid>
+    </views:ViewBase.PageContent>
+
+</views:ViewBase>

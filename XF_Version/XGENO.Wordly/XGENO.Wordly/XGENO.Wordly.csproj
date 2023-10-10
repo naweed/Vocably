@@ -1,0 +1,69 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+    <LangVersion>9.0</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2478" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
+    <PackageReference Include="MonkeyCache.FileStore" Version="1.6.3" />
+    <PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.2" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.1.0" />
+    <PackageReference Include="SkiaSharp.Views.Forms" Version="2.88.0" />
+    <PackageReference Include="Plugin.SegmentedControl.Netstandard" Version="5.5.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\XGENO.Mobile.Framework\XGENO.Mobile.Framework.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Models\" />
+    <None Remove="Interfaces\" />
+    <None Remove="Services\" />
+    <None Remove="Resources\" />
+    <None Remove="Resources\Fonts\" />
+    <None Remove="Resources\Fonts\FiraSans-Light.ttf" />
+    <None Remove="Helpers\" />
+    <None Remove="Views\" />
+    <None Remove="ViewModels\" />
+    <None Remove="ViewControls\" />
+    <None Remove="sqlite-net-pcl" />
+    <None Remove="Com.Airbnb.Xamarin.Forms.Lottie" />
+    <None Remove="Resources\Fonts\FiraSansCondensed-Regular.ttf" />
+    <None Remove="Rg.Plugins.Popup" />
+    <None Remove="Microcharts.Forms" />
+    <None Remove="Syncfusion.Xamarin.SfChart" />
+    <None Remove="Syncfusion.Xamarin.Core" />
+    <None Remove="SkiaSharp.Views.Forms" />
+    <None Remove="Plugin.SegmentedControl.Netstandard" />
+    <None Remove="Converters\" />
+    <None Remove="Resources\Fonts\FiraSans-SemiBold.ttf" />
+    <None Remove="Resources\Fonts\BarlowCondensed-Medium.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Services\" />
+    <Folder Include="Resources\" />
+    <Folder Include="Resources\Fonts\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Views\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="ViewControls\" />
+    <Folder Include="Converters\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Fonts\FiraSans-Light.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\FiraSansCondensed-Regular.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\FiraSans-SemiBold.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\BarlowCondensed-Medium.ttf" />
+  </ItemGroup>
+</Project>

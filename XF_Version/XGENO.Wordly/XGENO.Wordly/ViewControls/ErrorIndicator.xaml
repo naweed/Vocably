@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<StackLayout
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    IsVisible="False"
+    x:Class="XGENO.Wordly.ViewControls.ErrorIndicator">
+
+    <Image
+        x:Name="imgError"
+        Source="{Binding ErrorImage, Mode=OneWay}"
+        HorizontalOptions="Center"
+        WidthRequest="64"
+        HeightRequest="64"
+        Aspect="AspectFit"
+        Margin="64,0"/>
+
+    <Label
+        Text="Uh-Oh!"
+        Style="{StaticResource MediumLightText18}"
+        HorizontalOptions="Center"
+        HorizontalTextAlignment="Center"
+        Margin="32,0"/>
+
+    <Label
+        x:Name="lblErrorText"
+        Style="{StaticResource RegularLightText14}"
+        LineBreakMode="WordWrap"
+        HorizontalOptions="Center"
+        HorizontalTextAlignment="Center"
+        Margin="32,0"/>
+    
+</StackLayout>

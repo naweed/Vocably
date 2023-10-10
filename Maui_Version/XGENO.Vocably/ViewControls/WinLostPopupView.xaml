@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    CanBeDismissedByTappingOutsideOfPopup="False"
+    Color="Transparent"
+    x:Class="XGENO.Vocably.ViewControls.WinLostPopupView">
+
+    <Grid
+        RowDefinitions="54,*"
+        WidthRequest="260"
+        VerticalOptions="Center"
+        HorizontalOptions="Center">
+
+        <ImageButton
+            Grid.Row="0"
+            VerticalOptions="Start"
+            HorizontalOptions="Center"
+            WidthRequest="48"
+            HeightRequest="48"
+            Source="closesmall.png"
+            BackgroundColor="Transparent"
+            Clicked="CloseButton_Clicked"
+            Padding="4" />
+
+        <Frame 
+            Grid.Row="1"
+            Padding="16,20"
+            BorderColor="Transparent"
+            WidthRequest="260"
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill"
+            CornerRadius="16">
+
+
+            <Grid
+                RowDefinitions="80,Auto,46,Auto,Auto"
+                BackgroundColor="White"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"
+                IsClippedToBounds="True">
+
+                <!-- Win/Lost Image -->
+                <Image
+                    x:Name="imgWon"
+                    Grid.Row="0"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    WidthRequest="60"
+                    HeightRequest="60"
+                    IsVisible="False"
+                    Source="won.png" />
+                <Image
+                    x:Name="imgLost"
+                    Grid.Row="0"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    WidthRequest="64"
+                    HeightRequest="64"
+                    IsVisible="False"
+                    Source="lost.png" />
+
+                <!-- Stars -->
+                <StackLayout
+                    Spacing="4"
+                    Orientation="Horizontal"
+                    Grid.Row="1"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
+
+                    <Image
+                        x:Name="imgStar1"
+                        WidthRequest="52"
+                        HeightRequest="52" />
+
+                    <Image
+                        x:Name="imgStar2"
+                        WidthRequest="52"
+                        HeightRequest="52"/>
+
+                    <Image
+                        x:Name="imgStar3"
+                        WidthRequest="52"
+                        HeightRequest="52" />
+
+                </StackLayout>
+
+
+                <!-- Word -->
+                <Label
+                    x:Name="txtWord"
+                    Grid.Row="2"
+                    HorizontalOptions="Center"
+                    VerticalTextAlignment="Center"
+                    VerticalOptions="Center"
+                    Margin="0,6,0,0"
+                    Style="{StaticResource MediumDarkText32}" />
+
+                <!-- Meaning -->
+                <Label
+                    x:Name="txtMeaning"
+                    Grid.Row="3"
+                    Margin="6,0,2,16"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Fill"
+                    LineBreakMode="WordWrap"
+                    MaxLines="7"
+                    HorizontalTextAlignment="Center"
+                    VerticalTextAlignment="Start"
+                    Style="{StaticResource MediumDarkText14}"
+                    TextColor="{StaticResource LostColor}" />
+
+                
+                <!-- Share Button -->
+                <Frame
+                    Grid.Row="4"
+                    Padding="0"
+                    BackgroundColor="{StaticResource PageBackgroundColor}"
+                    HasShadow="False"
+                    BorderColor="{StaticResource LightFrameColor}"
+                    HorizontalOptions="Fill"
+                    HeightRequest="40">
+
+                    <StackLayout
+                        Orientation="Horizontal"
+                        Spacing="12"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center">
+
+                        <Image
+                            VerticalOptions="Center"
+                            WidthRequest="18"
+                            HeightRequest="18"
+                            Source="icnshare.png" />
+
+                        <Label
+                            Text="SHARE"
+                            VerticalOptions="Center"
+                            VerticalTextAlignment="Center"
+                            Style="{StaticResource MediumLightText18}" />
+
+                    </StackLayout>
+
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ShareButton_Clicked" />
+                    </Frame.GestureRecognizers>
+
+                </Frame>
+
+
+            </Grid>
+            
+        </Frame>
+
+    </Grid>
+    
+</mct:Popup>

@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:ViewBase
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:XGENO.Vocably.Views"
+    xmlns:viewmodels="clr-namespace:XGENO.Vocably.ViewModels"
+    xmlns:controls="clr-namespace:XGENO.Vocably.ViewControls"
+    x:Class="XGENO.Vocably.Views.RulesPage"
+    x:TypeArguments="viewmodels:RulesPageViewModel"
+    ContentDisplayMode="NavigationBar"
+    PageMode="Modal"
+    PageTitle="{Binding Title}">
+    <views:ViewBase.PageContent>
+        <Grid
+            Padding="32,24,32,24">
+            <ScrollView
+                VerticalOptions="Fill"
+                HorizontalScrollBarVisibility="Never"
+                VerticalScrollBarVisibility="Never">
+                <VerticalStackLayout
+                    Spacing="16">
+
+                    <Frame
+                        Style="{StaticResource RulesFrameStyle}">
+
+                        <Grid
+                            ColumnDefinitions="28,12,*">
+
+                            <Image
+                                Grid.Column="0"
+                                Source="icninfo.png"
+                                VerticalOptions="Start"
+                                HorizontalOptions="Center"
+                                WidthRequest="24"
+                                HeightRequest="24"
+                                Margin="0,4,0,0"/>
+
+                            <Label
+                                Grid.Column="2"
+                                Style="{StaticResource RegularLightText14}"
+                                LineHeight="1.2"
+                                LineBreakMode="WordWrap">
+                                <Label.Text>
+                                    There are a total of 2,700 levels to play. There is no limit to the number of levels you can play in a day.
+                                </Label.Text>
+                            </Label>
+
+                        </Grid>
+
+                    </Frame>
+
+                    <Frame
+                        Style="{StaticResource RulesFrameStyle}">
+
+                        <Grid
+                            ColumnDefinitions="28,12,*">
+
+                            <Image
+                                Grid.Column="0"
+                                Source="icnhint.png"
+                                VerticalOptions="Start"
+                                HorizontalOptions="Center"
+                                WidthRequest="24"
+                                HeightRequest="24"
+                                Margin="0,4,0,0"/>
+
+                            <Label
+                                Grid.Column="2"
+                                Style="{StaticResource RegularLightText14}"
+                                LineHeight="1.2"
+                                LineBreakMode="WordWrap">
+                                <Label.Text>
+                                    You are given a total of 6 hint credits at the start of the game. The hints will show you the meaning of the words you are playing for. Each 5 wins unlock 1 additional hint credit for you.
+                                </Label.Text>
+                            </Label>
+
+                        </Grid>
+
+                    </Frame>
+
+                    <Frame
+                        Style="{StaticResource RulesFrameStyle}">
+
+                        <Grid
+                            ColumnDefinitions="28,12,*">
+
+                            <Image
+                                Grid.Column="0"
+                                Source="icnrules.png"
+                                VerticalOptions="Start"
+                                HorizontalOptions="Center"
+                                WidthRequest="18"
+                                HeightRequest="18"
+                                Margin="0,6,0,0"/>
+
+                            <StackLayout
+                                Orientation="Vertical"
+                                Spacing="6"
+                                Grid.Column="2">
+
+                                <Label
+                                    Style="{StaticResource RegularLightText14}"
+                                    LineHeight="1.2"
+                                    LineBreakMode="WordWrap">
+                                    <Label.Text>
+                                        You have to guess the word in 6 tries.
+                                    </Label.Text>
+                                </Label>
+
+                                <Label
+                                    Style="{StaticResource RegularLightText14}"
+                                    LineHeight="1.2"
+                                    LineBreakMode="WordWrap">
+                                    <Label.Text>
+                                        Each guess must be a valid 5 letter word. Hit ENTER button to submit.
+                                    </Label.Text>
+                                </Label>
+
+                                <Label
+                                    Style="{StaticResource RegularLightText14}"
+                                    LineHeight="1.2"
+                                    LineBreakMode="WordWrap">
+                                    <Label.Text>
+                                        After each guess, the color of the tiles will change to show how close your guess was to the actual word.
+                                    </Label.Text>
+                                </Label>
+
+                                <Label
+                                    Style="{StaticResource RegularLightText14}"
+                                    LineHeight="1.2"
+                                    LineBreakMode="WordWrap">
+                                    <Label.Text>
+                                        Take a look at this example
+                                    </Label.Text>
+                                </Label>
+
+                                <Image
+                                    Margin="0,4,0,0"
+                                    Source="gamerules.png"
+                                    Aspect="AspectFit" />
+
+                                <Label
+                                    Style="{StaticResource RegularLightText14}"
+                                    LineHeight="1.2"
+                                    LineBreakMode="WordWrap">
+                                    <Label.Text>
+                                        The letter E is present in the word, and is at the correct spot.
+                                    </Label.Text>
+                                </Label>
+
+                                <Label
+                                    Style="{StaticResource RegularLightText14}"
+                                    LineHeight="1.2"
+                                    LineBreakMode="WordWrap">
+                                    <Label.Text>
+                                        The letter R is present in the word, but is at the wrong spot.
+                                    </Label.Text>
+                                </Label>
+
+                                <Label
+                                    Style="{StaticResource RegularLightText14}"
+                                    LineHeight="1.2"
+                                    LineBreakMode="WordWrap">
+                                    <Label.Text>
+                                        The letters C, A and N are not present in this word.
+                                    </Label.Text>
+                                </Label>
+
+                            </StackLayout>
+
+
+                        </Grid>
+
+                    </Frame>
+
+                </VerticalStackLayout>
+            </ScrollView>
+        </Grid>
+    </views:ViewBase.PageContent>
+</views:ViewBase>

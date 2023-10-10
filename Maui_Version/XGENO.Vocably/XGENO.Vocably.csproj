@@ -1,0 +1,146 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net6.0-android;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.19041.0</TargetFrameworks>
+
+		<OutputType>Exe</OutputType>
+		<RootNamespace>XGENO.Vocably</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>disable</ImplicitUsings>
+
+		<!-- Display name -->
+		<ApplicationTitle>Vocably</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId>com.xgeno.wordly</ApplicationId>
+		<ApplicationIdGuid>33F05EA2-63E7-471C-B064-DD4B3716416E</ApplicationIdGuid>
+
+		<!-- Versions -->
+		<ApplicationDisplayVersion>1.6</ApplicationDisplayVersion>
+		<ApplicationVersion>16</ApplicationVersion>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+	</PropertyGroup>
+
+	
+
+	<ItemGroup>
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\Splash\vocablogo.png" Color="#151515" BaseSize="128,128" />
+
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\Raw\vocabicon.png" BaseSize="1024,1024" ForegroundScale="0.65" Color="#151515" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\Raw\vocabicondroid.png" BaseSize="432,432" Color="#151515" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\Raw\vocabicon.png" BaseSize="1024,1024" Color="#151515" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\Raw\vocabicon.png" BaseSize="1024,1024" Color="#151515" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+	  <ProjectReference Include="..\XGENO.Mobile.Framework\XGENO.Mobile.Framework.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Remove="CommunityToolkit.Maui" />
+	  <None Remove="CommunityToolkit.Mvvm" />
+	  <None Remove="MonkeyCache.FileStore" />
+	  <None Remove="sqlite-net-pcl" />
+	  <None Remove="SQLitePCLRaw.core" />
+	  <None Remove="Syncfusion.Maui.Gauges" />
+	  <None Remove="Converters\" />
+	  <None Remove="Helpers\" />
+	  <None Remove="Models\" />
+	  <None Remove="Services\" />
+	  <None Remove="Platforms\Android\Dependencies\" />
+	  <None Remove="Platforms\iOS\Dependencies\" />
+	  <None Remove="Views\" />
+	  <None Remove="ViewControls\" />
+	  <None Remove="ViewModels\" />
+	  <None Remove="Platforms\Windows\Dependencies\" />
+	  <None Remove="Platforms\MacCatalyst\Dependencies\" />
+	  <None Remove="Resources\Fonts\BarlowCondensed-Medium.ttf" />
+	  <None Remove="Resources\Fonts\FiraSans-Light.ttf" />
+	  <None Remove="Resources\Fonts\FiraSans-Medium.ttf" />
+	  <None Remove="Resources\Fonts\FiraSans-Regular.ttf" />
+	  <None Remove="Resources\Fonts\FiraSans-SemiBold.ttf" />
+	  <None Remove="Resources\Fonts\FiraSansCondensed-Regular.ttf" />
+	  <None Remove="Resources\AppIcon\vocabicon.png" />
+	  <None Remove="Resources\Splash\vocablogo.png" />
+	  <None Remove="SkiaSharp.Views.Maui.Controls" />
+	  <None Remove="SkiaSharp.Views.Maui.Core" />
+	</ItemGroup>
+	<ItemGroup>
+	  <PackageReference Include="CommunityToolkit.Maui" Version="1.0.0" />
+	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0-preview4" />
+	  <PackageReference Include="MonkeyCache.FileStore" Version="2.0.0-beta" />
+	  <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+	  <PackageReference Include="SQLitePCLRaw.core" Version="2.1.0" />
+	  <PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.0" />
+	  <PackageReference Include="SQLitePCLRaw.provider.dynamic_cdecl" Version="2.1.0" />
+	  <PackageReference Include="SQLitePCLRaw.provider.sqlite3" Version="2.1.0" />
+	  <PackageReference Include="Syncfusion.Maui.Gauges" Version="20.1.60-preview" />
+	  <PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="2.88.1-preview.63" />
+	  <PackageReference Include="SkiaSharp.Views.Maui.Core" Version="2.88.1-preview.63" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Converters\" />
+	  <Folder Include="Helpers\" />
+	  <Folder Include="Models\" />
+	  <Folder Include="Services\" />
+	  <Folder Include="Platforms\Android\Dependencies\" />
+	  <Folder Include="Platforms\iOS\Dependencies\" />
+	  <Folder Include="Views\" />
+	  <Folder Include="ViewControls\" />
+	  <Folder Include="ViewModels\" />
+	  <Folder Include="Platforms\Windows\Dependencies\" />
+	  <Folder Include="Platforms\MacCatalyst\Dependencies\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <MauiXaml Update="ViewControls\ErrorIndicator.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="ViewControls\LoadingIndicator.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="ViewControls\WordleBox.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="ViewControls\ShowHintPopupView.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Update="ViewControls\WinLostPopupView.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	</ItemGroup>
+	<ItemGroup>
+	  <MauiFont Include="Resources\Fonts\BarlowCondensed-Medium.ttf" />
+	  <MauiFont Include="Resources\Fonts\FiraSans-Light.ttf" />
+	  <MauiFont Include="Resources\Fonts\FiraSans-Medium.ttf" />
+	  <MauiFont Include="Resources\Fonts\FiraSans-Regular.ttf" />
+	  <MauiFont Include="Resources\Fonts\FiraSans-SemiBold.ttf" />
+	  <MauiFont Include="Resources\Fonts\FiraSansCondensed-Regular.ttf" />
+	</ItemGroup>
+</Project>

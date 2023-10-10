@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:ViewBase 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:XGENO.Vocably.Views"
+    xmlns:viewmodels="clr-namespace:XGENO.Vocably.ViewModels"
+    xmlns:controls="clr-namespace:XGENO.Vocably.ViewControls"
+    x:Class="XGENO.Vocably.Views.LeaderboardPage"
+    x:TypeArguments="viewmodels:LeaderboardPageViewModel"
+    ContentDisplayMode="NavigationBar"
+    PageMode="Modal"
+    PageTitle="{Binding Title}">
+
+    <views:ViewBase.PageContent>
+        <Grid>
+            <VerticalStackLayout
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Margin="48,0"
+                Spacing="16">
+
+                <Image
+                    Source="soon.png"
+                    HorizontalOptions="Center"
+                    WidthRequest="74"
+                    HeightRequest="74"
+                    Aspect="AspectFit" />
+
+                <Label
+                    Style="{StaticResource RegularLightText14}"
+                    LineBreakMode="WordWrap"
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    LineHeight="1.2">
+                    <Label.Text>
+                        Leaderboard! A new concept is on its way. This will allow you to compete with players worldwide anonymously. Show who's the boss by sharing your progress, win ratios and stats. STAY TUNED.
+                    </Label.Text>
+                </Label>
+
+            </VerticalStackLayout>
+        </Grid>
+    </views:ViewBase.PageContent>
+   
+</views:ViewBase>

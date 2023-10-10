@@ -1,0 +1,296 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+    xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    ios:Page.PrefersHomeIndicatorAutoHidden="true"
+    BackgroundColor="{StaticResource PageBackgroundColor}"
+    x:Class="XGENO.Vocably.Views.PageBase">
+
+    <ContentPage.Content>
+
+        <Grid
+            BackgroundColor="{StaticResource PageBackgroundColor}"
+            IgnoreSafeArea="True">
+
+            <!-- Menu Area -->
+            <Grid
+                x:Name="MenuContainer"
+                IsEnabled="False"
+                ColumnDefinitions="3*,2*">
+                <Grid.RowDefinitions>
+                    <RowDefinition x:Name="MenuStatusRowDefinition" Height="0" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="{StaticResource ShadeStartColor}" Offset="0.01" />
+                        <GradientStop Color="{StaticResource ShadeEndColor}" Offset="1.0"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
+
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="GridArea_Tapped" />
+                </Grid.GestureRecognizers>
+
+                <!-- Icon for Close Button -->
+                <ImageButton
+                    x:Name="MenuCloseButton"
+                    Source="icnclosemenu.png"
+                    Padding="0"
+                    VerticalOptions="Start"
+                    HorizontalOptions="Start"
+                    Style="{StaticResource IconButtonStyle}"
+                    Clicked="CloseMenuButton_Clicked"
+                    Opacity="0"
+                    Grid.Row="1"
+                    Grid.Column="0" />
+
+                <!-- Top Menu Items -->
+                <StackLayout
+                    Orientation="Vertical"
+                    Grid.Column="0"
+                    Grid.Row="2"
+                    Margin="20,48,0,24"
+                    HorizontalOptions="Fill"
+                    Spacing="4">
+
+
+                    <!-- Game Rules -->
+                    <StackLayout
+                        Orientation="Horizontal"
+                        HorizontalOptions="Fill"
+                        Padding="0,10"
+                        Spacing="14">
+
+                        <Image
+                            Source="icnrules.png"
+                            VerticalOptions="Center"
+                            WidthRequest="17"
+                            HeightRequest="17" />
+
+                        <Label
+                            Text="GAME RULES"
+                            VerticalOptions="Center"
+                            Margin="1,0,0,0"
+                            Style="{StaticResource RegularLightText16}" />
+
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="GameRules_Tapped" />
+                        </StackLayout.GestureRecognizers>
+
+                    </StackLayout>
+
+                    <!-- Statistics -->
+                    <StackLayout
+                        Orientation="Horizontal"
+                        HorizontalOptions="Fill"
+                        Padding="0,10"
+                        Spacing="13">
+
+                        <Image
+                            Source="icnstats.png"
+                            VerticalOptions="Center"
+                            WidthRequest="19"
+                            HeightRequest="19" />
+
+                        <Label
+                            Text="MY STATS"
+                            VerticalOptions="Center"
+                            Margin="1,0,0,0"
+                            Style="{StaticResource RegularLightText16}" />
+
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Statistics_Tapped" />
+                        </StackLayout.GestureRecognizers>
+
+                    </StackLayout>
+
+                    <!-- Leader Board -->
+                    <StackLayout
+                        Orientation="Horizontal"
+                        HorizontalOptions="Fill"
+                        Padding="0,10"
+                        Spacing="12">
+
+                        <Image
+                            Source="icnleaderboard.png"
+                            VerticalOptions="Center"
+                            WidthRequest="20"
+                            HeightRequest="20" />
+
+                        <Label
+                            Text="LEADERBOARD"
+                            VerticalOptions="Center"
+                            Margin="1,0,0,0"
+                            Style="{StaticResource RegularLightText16}" />
+
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Leaderboard_Tapped" />
+                        </StackLayout.GestureRecognizers>
+
+                    </StackLayout>
+
+                    <!-- Privay Policy -->
+                    <StackLayout
+                        Orientation="Horizontal"
+                        HorizontalOptions="Fill"
+                        Padding="0,10"
+                        Spacing="14">
+
+                        <Image
+                            Source="icnprivacy.png"
+                            VerticalOptions="Center"
+                            WidthRequest="18"
+                            HeightRequest="18" />
+
+                        <Label
+                            Text="PRIVACY POLICY"
+                            VerticalOptions="Center"
+                            Margin="1,0,0,0"
+                            Style="{StaticResource RegularLightText16}" />
+
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="PrivacyPolicy_Tapped" />
+                        </StackLayout.GestureRecognizers>
+
+                    </StackLayout>
+
+                    <!-- Contact Us -->
+                    <StackLayout
+                        Orientation="Horizontal"
+                        HorizontalOptions="Fill"
+                        Padding="0,10"
+                        Spacing="15">
+
+                        <Image
+                            Source="icnemail.png"
+                            VerticalOptions="Center"
+                            WidthRequest="19"
+                            HeightRequest="19" />
+
+                        <Label
+                            Text="CONTACT US"
+                            VerticalOptions="Center"
+                            Margin="0,0,0,0"
+                            Style="{StaticResource RegularLightText16}" />
+
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ContactUs_Tapped" />
+                        </StackLayout.GestureRecognizers>
+
+                    </StackLayout>
+
+                </StackLayout>
+
+            </Grid>
+
+
+
+            <!-- Main Content -->
+            <Grid
+                x:Name="MainContentGrid"
+                BackgroundColor="{StaticResource PageBackgroundColor}">
+                <Grid.RowDefinitions>
+                    <RowDefinition x:Name="StatusRowDefinition" Height="0" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <!-- Grid to contain Page Content -->
+                <Grid
+                    x:Name="PageContentGrid"
+                    Grid.Row="0"
+                    Grid.RowSpan="3"/>
+
+                <!-- Page Header -->
+                <Grid
+                    x:Name="BaseHeaderGrid"
+                    Grid.Row="1"
+                    ColumnDefinitions="56,*"
+                    Margin="{OnPlatform iOS='0,0', Android='0,4'}">
+
+                    <!-- Icons for Left Side -->
+                    <ImageButton 
+                        x:Name="HamburgerButton"
+                        Source="icnhamburger.png"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Start"
+                        Padding="{OnPlatform 4, Android=2}"
+                        Clicked="HamburgerButton_Clicked"
+                        Style="{StaticResource IconButtonStyle}"
+                        Grid.Column="0" />
+
+                    <ImageButton 
+                        x:Name="NavigateBackButton"
+                        Source="icnback.png"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Start"
+                        Style="{StaticResource IconButtonStyle}"   
+                        Grid.Column="0">
+
+                        <ImageButton.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="NavigateBackButton_Tapped" />
+                        </ImageButton.GestureRecognizers>
+
+                    </ImageButton>
+
+                    <ImageButton 
+                        x:Name="CloseButton"
+                        Source="icnclose.png"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Start"
+                        Style="{StaticResource IconButtonStyle}"                        
+                        Grid.Column="0">
+
+                        <ImageButton.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="CloseButton_Tapped" />
+                        </ImageButton.GestureRecognizers>
+                        
+                    </ImageButton>
+
+
+                    <!-- Page Header Label -->
+                    <Border
+                        x:Name="HeaderTextFrame"
+                        IsVisible="False"
+                        Margin="2,0,58,0"
+                        VerticalOptions="Center"
+                        HeightRequest="34"
+                        Padding="20,0"
+                        HorizontalOptions="Center"
+                        Grid.Column="1"
+                        BackgroundColor="Transparent"
+                        Stroke="{StaticResource LightFrameColor}">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="17"/>
+                        </Border.StrokeShape>
+
+                        <Label
+                            x:Name="TitleLabel"
+                            VerticalOptions="Center" 
+                            HorizontalOptions="Fill"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center"
+                            Margin="{OnPlatform iOS='0,0,0,-2', Android='0,0,0,0'}"
+                            Style="{StaticResource PageHeaderTextStyle}" />
+                    </Border>
+
+                    <!-- Icons for Right Side -->
+                    <Grid 
+                        x:Name="PageIconsGrid"
+                        Grid.Column="1"
+                        VerticalOptions="Fill"
+                        HorizontalOptions="Fill" />
+
+                </Grid>
+            </Grid>
+        </Grid>
+
+    </ContentPage.Content>
+    
+</ContentPage>

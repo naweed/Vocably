@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:ViewBase 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:XGENO.Vocably.Views"
+    xmlns:viewmodels="clr-namespace:XGENO.Vocably.ViewModels"
+    xmlns:controls="clr-namespace:XGENO.Vocably.ViewControls"
+    x:Class="XGENO.Vocably.Views.AboutUsPage"
+    x:TypeArguments="viewmodels:AboutUsPageViewModel"
+    ContentDisplayMode="NavigationBar"
+    PageMode="Modal"
+    PageTitle="{Binding Title}">
+
+    <views:ViewBase.PageContent>
+        <Grid>
+            <VerticalStackLayout
+                Spacing="12"
+                Margin="32,24,32,0">
+
+                <Image
+                    Source="imgemail"
+                    WidthRequest="124"
+                    HeightRequest="124"
+                    HorizontalOptions="Center"
+                    Margin="0,0,0,0"/>
+
+                <Label
+                    Style="{StaticResource RegularLightText16}"
+                    LineBreakMode="WordWrap"
+                    LineHeight="1.1"
+                    Margin="0,12,0,0">
+                    <Label.Text>
+                        We value your feedback and comments. Please reach out to us if you have a comment or suggestion to improve the app, or want to report a bug.
+                    </Label.Text>
+                </Label>
+
+                <!-- Send Feedback Button -->
+                <Button
+                    Style="{StaticResource PageButtonStyle}"
+                    Margin="0,16,0,0"
+                    Text="WRITE TO US"
+                    HorizontalOptions="Fill"
+                    Command="{Binding SendFeedbackCommand,Mode=OneWay}"/>
+
+            </VerticalStackLayout>
+        </Grid>
+    </views:ViewBase.PageContent>
+    
+</views:ViewBase>

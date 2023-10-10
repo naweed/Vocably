@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<views:ViewBase
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:XGENO.Wordly.Views"
+    xmlns:viewmodels="clr-namespace:XGENO.Wordly.ViewModels"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:TypeArguments="viewmodels:PrivacyPolicyPageViewModel"
+    ContentDisplayMode="NavigationBar"
+    PageMode="Modal"
+    PageTitle="{Binding Title}"
+    x:Class="XGENO.Wordly.Views.PrivacyPolicyPage">
+    
+    <views:ViewBase.PageContent>
+        <Grid>
+            <StackLayout
+                Orientation="Vertical"
+                Spacing="12"
+                Margin="32,24,32,0">
+
+                <Image
+                    Source="imgPrivacy"
+                    WidthRequest="124"
+                    HeightRequest="124"
+                    HorizontalOptions="Center"
+                    Margin="0,0,0,0"/>
+
+                <Label
+                    Style="{StaticResource RegularLightText16}"
+                    LineBreakMode="WordWrap"
+                    Margin="0,18,0,0">
+                    <Label.Text>
+                        Your privacy is extremely important to us. This application does not collect any personal data from you or your device, and we do not share your information with any third party.
+                    </Label.Text>
+                </Label>
+
+               
+                <Label
+                    Style="{StaticResource RegularLightText16}"
+                    LineBreakMode="WordWrap"
+                    Margin="0,18,0,0">
+                    <Label.Text>
+                        Data collected for the purpose of Leaderboard is anonymous and does not contain any personal identification information.
+                    </Label.Text>
+                </Label>
+
+
+            </StackLayout>
+        </Grid>
+    </views:ViewBase.PageContent>
+    
+</views:ViewBase>

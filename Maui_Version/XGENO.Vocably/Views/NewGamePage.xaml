@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:ViewBase 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:XGENO.Vocably.Views"
+    xmlns:viewmodels="clr-namespace:XGENO.Vocably.ViewModels"
+    xmlns:controls="clr-namespace:XGENO.Vocably.ViewControls"
+    x:Class="XGENO.Vocably.Views.NewGamePage"
+    x:TypeArguments="viewmodels:NewGamePageViewModel"
+    ContentDisplayMode="NavigationBar"
+    PageMode="Navigate"
+    PageTitle="{Binding Title}">
+
+    <views:ViewBase.PageIcons>
+        <ImageButton
+            Source="icnhint.png"
+            Padding="0"
+            VerticalOptions="Center"
+            HorizontalOptions="End"
+            Style="{StaticResource IconButtonStyle}" 
+            Clicked="UseHint_Clicked"/>
+    </views:ViewBase.PageIcons>
+
+    <views:ViewBase.PageContent>
+        <Grid
+            RowDefinitions="2*,70,70,70,70,70,70,6*,44,6,44,6,44,3*"
+            x:Name="WordleGrid">
+            <!-- 0=Empty, 
+                 1=Row1, 
+                 2=Row2, 
+                 3=Row3, 
+                 4=Row4, 
+                 5=Row5, 
+                 6=Row6, 
+                 7=Empty, 
+                 8=Keyboard1, 
+                 9=Empty,
+                 10=Keyboard2, 
+                 11=Empty,
+                 12=Keyboard3, 
+                 13=Empty  -->
+
+            <!-- Wordle Row 1 -->
+            <HorizontalStackLayout
+                x:Name="WordleRow1"
+                Style="{StaticResource WordleLayoutStyle}"
+                Grid.Row="1" />
+
+            <!-- Wordle Row 2 -->
+            <HorizontalStackLayout
+                x:Name="WordleRow2"
+                Style="{StaticResource WordleLayoutStyle}"
+                Grid.Row="2" />
+
+            <!-- Wordle Row 3 -->
+            <HorizontalStackLayout
+                x:Name="WordleRow3"
+                Style="{StaticResource WordleLayoutStyle}"
+                Grid.Row="3" />
+
+            <!-- Wordle Row 4 -->
+            <HorizontalStackLayout
+                x:Name="WordleRow4"
+                Style="{StaticResource WordleLayoutStyle}"
+                Grid.Row="4" />
+
+            <!-- Wordle Row 5 -->
+            <HorizontalStackLayout
+                x:Name="WordleRow5"
+                Style="{StaticResource WordleLayoutStyle}"
+                Grid.Row="5" />
+
+            <!-- Wordle Row 6 -->
+            <HorizontalStackLayout
+                x:Name="WordleRow6"
+                Style="{StaticResource WordleLayoutStyle}"
+                Grid.Row="6" />
+
+
+
+            <!-- Keyboard Row 1 -->
+            <HorizontalStackLayout
+                Style="{StaticResource KeyboardLayoutStyle}"
+                Grid.Row="8"
+                Opacity="0"
+                x:Name="stkKeyboardRow1">
+
+                <Button
+                    Text="Q"
+                    Style="{StaticResource KeyboardButtonStyle}"
+                    Clicked="Regular_Keyboard_Button_Clicked" />
+
+                <Button
+                    Text="W"
+                    Style="{StaticResource KeyboardButtonStyle}"
+                    Clicked="Regular_Keyboard_Button_Clicked" />
+
+                <Button
+                    Text="E"
+                    Style="{StaticResource KeyboardButtonStyle}"
+                    Clicked="Regular_Keyboard_Button_Clicked" />
+
+                <Button
+                    Text="R"
+                    Style="{StaticResource KeyboardButtonStyle}"
+                    Clicked="Regular_Keyboard_Button_Clicked" />
+
+                <Button
+                    Text="T"
+                    Style="{StaticResource KeyboardButtonStyle}"
+                    Clicked="Regular_Keyboard_Button_Clicked" />
+
+                <Button
+                    Text="Y"
+                    Style="{StaticResource KeyboardButtonStyle}"
+                    Clicked="Regular_Keyboard_Button_Clicked" />
+
+                <Button
+                    Text="U"
+                    Style="{StaticResource KeyboardButtonStyle}"
+                    Clicked="Regular_Keyboard_Button_Clicked" />
+
+                <Button
+                    Text="I"
+                    Style="{StaticResource KeyboardButtonStyle}"
+                    Clicked="Regular_Keyboard_Button_Clicked" />
+
+                <Button
+                    Text="O"
+                    Style="{StaticResource KeyboardButtonStyle}"
+                    Clicked="Regular_Keyboard_Button_Clicked" />
+
+                <Button
+                    Text="P"
+                    Style="{StaticResource KeyboardButtonStyle}"
+                    Clicked="Regular_Keyboard_Button_Clicked" />
+
+            </HorizontalStackLayout>
+
+            <!-- Keyboard Row 2 -->
+            <HorizontalStackLayout
+                Style="{StaticResource KeyboardLayoutStyle}"
+                Grid.Row="10"
+                Opacity="0"
+                x:Name="stkKeyboardRow2">
+
+                <Button
+                    Text="A"
+                    Style="{StaticResource KeyboardButtonStyle}"
+                    Clicked="Regular_Keyboard_Button_Clicked" />
+
+                <Button
+                    Text="S"
+                    Style="{StaticResource KeyboardButtonStyle}"
+                    Clicked="Regular_Keyboard_Button_Clicked" />
+
+                <Button
+                    Text="D"
+                    Style="{StaticResource KeyboardButtonStyle}"
+                    Clicked="Regular_Keyboard_Button_Clicked" />
+
+                <Button
+                    Text="F"
+                    Style="{StaticResource KeyboardButtonStyle}"
+                    Clicked="Regular_Keyboard_Button_Clicked" />
+
+                <Button
+                    Text="G"
+                    Style="{StaticResource KeyboardButtonStyle}"
+                    Clicked="Regular_Keyboard_Button_Clicked" />
+
+                <Button
+                    Text="H"
+                    Style="{StaticResource KeyboardButtonStyle}"
+                    Clicked="Regular_Keyboard_Button_Clicked" />
+
+                <Button
+                    Text="J"
+                    Style="{StaticResource KeyboardButtonStyle}"
+                    Clicked="Regular_Keyboard_Button_Clicked" />
+
+                <Button
+                    Text="K"
+                    Style="{StaticResource KeyboardButtonStyle}"
+                    Clicked="Regular_Keyboard_Button_Clicked" />
+
+                <Button
+                    Text="L"
+                    Style="{StaticResource KeyboardButtonStyle}"
+                    Clicked="Regular_Keyboard_Button_Clicked" />
+
+            </HorizontalStackLayout>
+
+            <!-- Keyboard Row 3 -->
+            <HorizontalStackLayout
+                Style="{StaticResource KeyboardLayoutStyle}"
+                Grid.Row="12"
+                Opacity="0"
+                x:Name="stkKeyboardRow3">
+
+                <Button
+                    BackgroundColor="#722F37"
+                    Text="⇍"
+                    FontSize="24"
+                    Style="{StaticResource KeyboardButtonStyle}"
+                    Padding="{OnPlatform iOS='0', Android='4,-6,4,0'}"
+                    Clicked="Back_Keyboard_Button_Clicked"
+                    WidthRequest="40" />
+
+                <Button
+                    Text="Z"
+                    Style="{StaticResource KeyboardButtonStyle}"
+                    Clicked="Regular_Keyboard_Button_Clicked" />
+
+                <Button
+                    Text="X"
+                    Style="{StaticResource KeyboardButtonStyle}"
+                    Clicked="Regular_Keyboard_Button_Clicked" />
+
+                <Button
+                    Text="C"
+                    Style="{StaticResource KeyboardButtonStyle}"
+                    Clicked="Regular_Keyboard_Button_Clicked" />
+
+                <Button
+                    Text="V"
+                    Style="{StaticResource KeyboardButtonStyle}"
+                    Clicked="Regular_Keyboard_Button_Clicked" />
+
+                <Button
+                    Text="B"
+                    Style="{StaticResource KeyboardButtonStyle}"
+                    Clicked="Regular_Keyboard_Button_Clicked" />
+
+                <Button
+                    Text="N"
+                    Style="{StaticResource KeyboardButtonStyle}"
+                    Clicked="Regular_Keyboard_Button_Clicked" />
+
+                <Button
+                    Text="M"
+                    Style="{StaticResource KeyboardButtonStyle}"
+                    Clicked="Regular_Keyboard_Button_Clicked" />
+
+                <Button
+                    BackgroundColor="#097969"
+                    Text="↵"                    
+                    Style="{StaticResource KeyboardButtonStyle}"
+                    FontSize="32"
+                    Padding="{OnPlatform iOS='4,-6,4,0', Android='4,-12,4,0'}"
+                    Clicked="Enter_Keyboard_Button_Clicked"
+                    WidthRequest="40"/>
+
+
+            </HorizontalStackLayout>
+
+
+        </Grid>
+    </views:ViewBase.PageContent>
+
+</views:ViewBase>

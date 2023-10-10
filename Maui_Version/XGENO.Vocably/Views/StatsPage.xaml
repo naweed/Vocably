@@ -1,0 +1,623 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:ViewBase 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:XGENO.Vocably.Views"
+    xmlns:viewmodels="clr-namespace:XGENO.Vocably.ViewModels"
+    xmlns:commoncontrols="clr-namespace:XGENO.Mobile.Framework.Controls;assembly=XGENO.Mobile.Framework"
+    xmlns:gauge="clr-namespace:Syncfusion.Maui.Gauges;assembly=Syncfusion.Maui.Gauges"
+    xmlns:localConverters="clr-namespace:XGENO.Vocably.Converters"
+    x:Class="XGENO.Vocably.Views.StatsPage"    
+    x:TypeArguments="viewmodels:StatsPageViewModel"
+    ContentDisplayMode="NavigationBar"
+    PageMode="Modal"
+    PageTitle="{Binding Title}">
+    
+    <views:ViewBase.Resources>
+        <localConverters:StatusIconConverter x:Key="cvtStatusIcon"/>
+    </views:ViewBase.Resources>
+
+    <views:ViewBase.PageIcons>
+        <ImageButton
+            Source="icnshare.png"
+            Padding="0"
+            VerticalOptions="Center"
+            HorizontalOptions="End"
+            Style="{StaticResource IconButtonStyle}"
+            Clicked="Share_Clicked"/>
+    </views:ViewBase.PageIcons>    
+
+    <views:ViewBase.PageContent>
+
+        <Grid
+            Margin="32,12,32,24"
+            RowDefinitions="Auto,24,*">
+
+            <!-- Headers -->
+            <HorizontalStackLayout
+                Spacing="8"
+                HorizontalOptions="Center">
+
+                <Border
+                    x:Name="frmSummary"
+                    VerticalOptions="Center"
+                    BackgroundColor="#992C3539"                            
+                    Padding="0"
+                    Stroke="{StaticResource LightBorderColor}"
+                    HeightRequest="32"
+                    WidthRequest="112">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="4"/>
+                    </Border.StrokeShape>
+
+                    <Label
+                        Style="{StaticResource RegularLightText12}"
+                        Text="SUMMARY"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center"
+                        HorizontalOptions="Center"/>
+
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="SummaryButton_Tapped" />
+                    </Border.GestureRecognizers>
+                </Border>
+
+                <Border
+                    x:Name="frmGames"
+                    VerticalOptions="Center"
+                    BackgroundColor="Transparent"                            
+                    Padding="0"
+                    Stroke="{StaticResource LightBorderColor}"
+                    HeightRequest="32"
+                    WidthRequest="112">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="4"/>
+                    </Border.StrokeShape>
+
+                    <Label
+                        Style="{StaticResource RegularLightText12}"
+                        Text="GAMES"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center"
+                        HorizontalOptions="Center"/>
+
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="GamesButton_Tapped" />
+                    </Border.GestureRecognizers>
+                </Border>
+
+            </HorizontalStackLayout>
+            
+            <!-- Stats -->
+            <ScrollView
+                x:Name="StatsView"
+                VerticalOptions="Fill"
+                HorizontalScrollBarVisibility="Never"
+                VerticalScrollBarVisibility="Never"
+                IsVisible="True"
+                Opacity="1"
+                Grid.Row="2">
+
+                <VerticalStackLayout
+                    Spacing="24">
+
+                    <!-- Stats -->
+                    <Grid
+                        ColumnDefinitions="*,24,*"
+                        HorizontalOptions="Fill">
+
+                        <!-- Progress -->
+                        <Border
+                            HorizontalOptions="Fill"
+                            BackgroundColor="#2C3539"
+                            Padding="0"
+                            Stroke="Transparent"
+                            Grid.Column="0">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="8"/>
+                            </Border.StrokeShape>
+
+                            <Grid
+                                HorizontalOptions="Fill"
+                                RowDefinitions="20,26,112,14,13,Auto,18">
+
+                                <Label
+                                    Style="{StaticResource MediumLightText18}"
+                                    HorizontalOptions="Center"
+                                    Grid.Row="1"
+                                    HorizontalTextAlignment="Center"
+                                    Text="PROGRESS" />
+
+                                <!--<controls:XFCircleProgress
+                                    Grid.Row="2"
+                                    RingThickness="6"
+                                    RingProgressColor="{StaticResource BorderColor}"
+                                    RingBaseColor="{StaticResource LightBorderColor}"
+                                    AnimatedProgress="{Binding GameProgressValue, Mode=OneWay}"
+                                    HorizontalOptions="Fill"
+                                    VerticalOptions="Fill"
+                                    Margin="4"/>-->
+
+                                <gauge:SfRadialGauge
+                                    Grid.Row="2"
+                                    HorizontalOptions="Fill"
+                                    VerticalOptions="Fill"
+                                    Margin="6">
+                                    <gauge:SfRadialGauge.Axes>
+                                        <gauge:RadialAxis Interval="10" Maximum="100" ShowLabels="False" ShowTicks="False" StartAngle="270" EndAngle="270" RadiusFactor="1">
+                                            <gauge:RadialAxis.AxisLineStyle>
+                                                <gauge:RadialLineStyle ThicknessUnit="Pixel" Thickness="2"/>
+                                            </gauge:RadialAxis.AxisLineStyle>
+                                            <gauge:RadialAxis.Ranges>
+                                                <gauge:RadialRange StartValue="0" EndValue="100" Fill="{StaticResource LightBorderColor}" StartWidth="2" EndWidth="2" RangeOffset="2" OffsetUnit="Pixel" />
+                                            </gauge:RadialAxis.Ranges>
+                                            <gauge:RadialAxis.Pointers>
+                                                <gauge:RangePointer Value="{Binding GameProgressValue, Mode=OneWay}" Fill="{StaticResource BorderColor}" EnableAnimation="True" PointerWidth="6" WidthUnit="Pixel" />
+                                            </gauge:RadialAxis.Pointers>
+                                        </gauge:RadialAxis>
+                                    </gauge:SfRadialGauge.Axes>
+                                </gauge:SfRadialGauge>
+
+                                <Label
+                                    Grid.Row="2"
+                                    Margin="0,2,0,0"
+                                    Text="{Binding GameProgressDisplay, Mode=OneWay}"
+                                    Style="{StaticResource MediumLightText22}"
+                                    LineBreakMode="WordWrap"
+                                    HorizontalOptions="Center"
+                                    HorizontalTextAlignment="Center"
+                                    VerticalOptions="Center" />
+
+
+                                <Label
+                                    Text="TOTAL GAMES"
+                                    Style="{StaticResource RegularLightText10}"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                    Grid.Row="4"
+                                    Margin="0,-2,0,0" />
+
+                                <Label
+                                    Text="2700"
+                                    Style="{StaticResource MediumLightText18}"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                    Grid.Row="5"
+                                    Margin="0,0,0,0"/>
+
+                            </Grid>
+
+                        </Border>
+
+                        <!-- Win Ratio -->
+                        <Border
+                            HorizontalOptions="Fill"
+                            BackgroundColor="#2C3539"
+                            Padding="0"
+                            Stroke="Transparent"
+                            Grid.Column="2">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="8"/>
+                            </Border.StrokeShape>
+
+
+                            <Grid
+                                HorizontalOptions="Fill"
+                                RowDefinitions="20,26,112,14,13,Auto,18"
+                                ColumnDefinitions="*,1,*">
+
+                                <Label
+                                    Style="{StaticResource MediumLightText18}"
+                                    HorizontalOptions="Center"
+                                    Grid.Row="1"
+                                    HorizontalTextAlignment="Center"
+                                    Text="WIN %"
+                                    Grid.ColumnSpan="3"/>
+
+                                <!--<controls:XFCircleProgress
+                                    Grid.Row="2"
+                                    Grid.ColumnSpan="3"
+                                    RingThickness="6"
+                                    RingProgressColor="{StaticResource WinColor}"
+                                    RingBaseColor="{StaticResource LostColor}"
+                                    AnimatedProgress="{Binding StatsWinRatioPercentageValue, Mode=OneWay}"
+                                    HorizontalOptions="Fill"
+                                    VerticalOptions="Fill"
+                                    Margin="4"/>-->
+
+                                <gauge:SfRadialGauge
+                                    Grid.Row="2"
+                                    Grid.ColumnSpan="3"
+                                    HorizontalOptions="Fill"
+                                    VerticalOptions="Fill"
+                                    Margin="6">
+                                    <gauge:SfRadialGauge.Axes>
+                                        <gauge:RadialAxis Interval="10" Maximum="100" ShowLabels="False" ShowTicks="False" StartAngle="270" EndAngle="270" RadiusFactor="1">
+                                            <gauge:RadialAxis.AxisLineStyle>
+                                                <gauge:RadialLineStyle ThicknessUnit="Pixel" Thickness="2"/>
+                                            </gauge:RadialAxis.AxisLineStyle>
+                                            <gauge:RadialAxis.Ranges>
+                                                <gauge:RadialRange StartValue="0" EndValue="100" Fill="{StaticResource LostColor}" StartWidth="2" EndWidth="2" RangeOffset="2" OffsetUnit="Pixel" />
+                                            </gauge:RadialAxis.Ranges>
+                                            <gauge:RadialAxis.Pointers>
+                                                <gauge:RangePointer Value="{Binding StatsWinRatioPercentageValue, Mode=OneWay}" Fill="{StaticResource WinColor}" EnableAnimation="True" PointerWidth="6" WidthUnit="Pixel" />
+                                            </gauge:RadialAxis.Pointers>
+                                        </gauge:RadialAxis>
+                                    </gauge:SfRadialGauge.Axes>
+                                </gauge:SfRadialGauge>
+
+                                <Label
+                                    Grid.Row="2"
+                                    Grid.ColumnSpan="3"
+                                    Margin="0,2,0,0"
+                                    Text="{Binding StatsWinRatioPercentageDisplay, Mode=OneWay}"
+                                    Style="{StaticResource MediumLightText22}"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center" />
+
+
+                                <Label
+                                    Text="WON"
+                                    Style="{StaticResource RegularLightText10}"
+                                    HorizontalOptions="End"
+                                    VerticalOptions="Center"
+                                    Grid.Column="0"
+                                    Grid.Row="4"
+                                    Margin="0,-2,14,0" />
+
+                                <Label
+                                    Text="{Binding StatsWinCount, Mode=OneWay}"
+                                    Style="{StaticResource MediumLightText18}"
+                                    HorizontalOptions="End"
+                                    VerticalOptions="Center"
+                                    Grid.Column="0"
+                                    Grid.Row="5"
+                                    Margin="0,0,16,0"/>
+
+                                <Label
+                                    Text="LOST"
+                                    Style="{StaticResource RegularLightText10}"
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="Center"
+                                    Grid.Column="2"
+                                    Grid.Row="4"
+                                    Margin="14,-2,0,0" />
+
+                                <Label
+                                    Text="{Binding StatsLostCount, Mode=OneWay}"
+                                    Style="{StaticResource MediumLightText18}"
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="Center"
+                                    Grid.Column="2"
+                                    Grid.Row="5"
+                                    Margin="16,0,0,0"/>
+
+                                <Rectangle
+                                    Grid.Row="4"
+                                    Grid.RowSpan="2"
+                                    Grid.Column="1"
+                                    VerticalOptions="Fill"
+                                    HorizontalOptions="Center"
+                                    WidthRequest="1"
+                                    BackgroundColor="{StaticResource LightBorderColor}" />
+
+                            </Grid>
+
+                        </Border>
+
+                    </Grid>
+
+                    <!-- Streaks -->
+                    <Border
+                        HorizontalOptions="Fill"
+                        BackgroundColor="#2C3539"
+                        Padding="0"
+                        Stroke="Transparent">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="8"/>
+                        </Border.StrokeShape>
+
+                        <Grid
+                            HorizontalOptions="Fill"
+                            RowDefinitions="18,26,6,13,Auto,18"
+                            ColumnDefinitions="*,1,*">
+
+                            <Label
+                                Style="{StaticResource MediumLightText20}"
+                                HorizontalOptions="Center"
+                                Grid.Row="1"
+                                Grid.ColumnSpan="3"
+                                HorizontalTextAlignment="Center"
+                                Text="WINNING STREAK" />
+
+                            <Label
+                                Text="MAX WINS"
+                                Style="{StaticResource RegularLightText12}"
+                                HorizontalOptions="End"
+                                VerticalOptions="Center"
+                                Grid.Column="0"
+                                Grid.Row="3"
+                                Margin="0,-2,14,0" />
+
+                            <Label
+                                Text="{Binding MaxWinsCount, Mode=OneWay}"
+                                Style="{StaticResource MediumLightText20}"
+                                HorizontalOptions="End"
+                                VerticalOptions="Center"
+                                Grid.Column="0"
+                                Grid.Row="4"
+                                Margin="0,0,16,0"/>
+
+                            <Label
+                                Text="CURRENT"
+                                Style="{StaticResource RegularLightText12}"
+                                HorizontalOptions="Start"
+                                VerticalOptions="Center"
+                                Grid.Column="2"
+                                Grid.Row="3"
+                                Margin="14,-2,0,0" />
+
+                            <Label
+                                Text="{Binding ConsecutiveWinsCount, Mode=OneWay}"
+                                Style="{StaticResource MediumLightText20}"
+                                HorizontalOptions="Start"
+                                VerticalOptions="Center"
+                                Grid.Column="2"
+                                Grid.Row="4"
+                                Margin="16,0,0,0"/>
+
+                            <Rectangle
+                                Grid.Row="3"
+                                Grid.RowSpan="2"
+                                Grid.Column="1"
+                                VerticalOptions="Fill"
+                                HorizontalOptions="Center"
+                                WidthRequest="1"
+                                BackgroundColor="{StaticResource LightBorderColor}" />
+
+                        </Grid>
+
+                    </Border>
+
+                    <!-- Guess Distributions -->
+                    <Border
+                        HorizontalOptions="Fill"
+                        BackgroundColor="#2C3539"
+                        Padding="0"
+                        Stroke="Transparent">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="8"/>
+                        </Border.StrokeShape>
+
+                        <Grid
+                            HorizontalOptions="Fill"
+                            RowDefinitions="18,26,6,172,18">
+
+                            <Label
+                                Style="{StaticResource MediumLightText20}"
+                                HorizontalOptions="Center"
+                                Grid.Row="1"
+                                HorizontalTextAlignment="Center"
+                                Text="GUESS DISTRIBUTION" />
+
+                            <VerticalStackLayout
+                                HorizontalOptions="Fill"
+                                Margin="32,8,32,4"
+                                BindableLayout.ItemsSource="{Binding GuessDistributionData, Mode=OneWay}"
+                                Grid.Row="3"
+                                Spacing="0">
+
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid
+                                            ColumnDefinitions="10,Auto,*"
+                                            HeightRequest="28">
+
+                                            <Label
+                                                Text="{Binding Attempt_No}"
+                                                Style="{StaticResource MediumLightText14}"
+                                                Grid.Column="0"
+                                                HorizontalOptions="End"
+                                                VerticalOptions="Center"
+                                                VerticalTextAlignment="Center"/>
+
+                                            <Rectangle
+                                                Grid.Column="1"
+                                                VerticalOptions="Fill"
+                                                HorizontalOptions="Center"
+                                                WidthRequest="1"
+                                                BackgroundColor="{StaticResource LightBorderColor}"
+                                                Margin="8,0,8,0"/>
+
+                                            <commoncontrols:GradientProgressBar
+                                                Grid.Column="2"
+                                                BackgroundColor="Transparent"
+                                                HorizontalOptions="Fill"
+                                                VerticalOptions="Center"
+                                                Margin="0,0,4,0"
+                                                AlternativeTextColor="{StaticResource WinColor}"
+                                                BarBackgroundColor="#bcd8f6"
+                                                CornerRadius="2"
+                                                FontSize="12"
+                                                GradientEndColor="{StaticResource WinColor}"
+                                                GradientStartColor="{StaticResource WinColor}"
+                                                HeightRequest="20"
+                                                Percentage="{Binding Percentage}"
+                                                DisplayText="{Binding Attempt_Count}"
+                                                TextColor="White" />
+
+                                            <!--<gauge:SfLinearGauge 
+                                                Grid.Column="2"
+                                                HorizontalOptions="Fill"
+                                                VerticalOptions="Center"
+                                                Margin="0,0,4,0"
+                                                Minimum="0"
+                                                Maximum="100"
+                                                ShowLabels="False"
+                                                ShowTicks="False">
+                                                <gauge:SfLinearGauge.LineStyle>
+                                                    <gauge:LinearLineStyle Thickness="16" Fill="{StaticResource LightBorderColor}" CornerRadius="2,2,2,2"/>
+                                                </gauge:SfLinearGauge.LineStyle>
+                                                <gauge:SfLinearGauge.BarPointers>
+                                                    <gauge:BarPointer Value="{Binding Percentage}" Fill="{StaticResource WinColor}" EnableAnimation="True" PointerSize="16" />
+                                                </gauge:SfLinearGauge.BarPointers>                                                
+                                            </gauge:SfLinearGauge>
+
+                                            <Label
+                                                Margin="0,0,16,0"
+                                                Style="{StaticResource RegularLightText12}"
+                                                TextColor="White"
+                                                HorizontalOptions="End"
+                                                VerticalOptions="Center"
+                                                Grid.Column="2"
+                                                Text="{Binding Attempt_Count}" />-->
+
+                                        </Grid>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+
+                            </VerticalStackLayout>
+
+                        </Grid>
+
+                    </Border>
+
+                </VerticalStackLayout>
+
+            </ScrollView>
+
+            <!-- Games -->
+            <CollectionView
+                x:Name="GamesView"
+                VerticalOptions="Fill"
+                IsVisible="False"
+                Opacity="0"
+                Grid.Row="2"
+                ItemSizingStrategy="MeasureAllItems"
+                ItemsSource="{Binding GameLevels, Mode=OneWay}">
+
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout                        
+                        Orientation="Vertical"
+                        ItemSpacing="12" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border
+                            HorizontalOptions="Fill"
+                            BackgroundColor="#992C3539"
+                            Padding="16"
+                            Stroke="Transparent">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="8"/>
+                            </Border.StrokeShape>
+
+                            <Grid
+                                HorizontalOptions="Fill"
+                                ColumnDefinitions="*,16,Auto"
+                                RowDefinitions="Auto,6,*">
+
+                                <!-- Level, Word and Icon -->
+                                <HorizontalStackLayout
+                                    Spacing="4"
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="Center"
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2">
+
+                                    <Image
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="End"
+                                        WidthRequest="{OnPlatform iOS=13, Android=13}"
+                                        HeightRequest="{OnPlatform iOS=13, Android=13}"
+                                        Margin="{OnPlatform iOS='0,1,0,0', Android='0,2,0,0'}"
+                                        Source="{Binding Status, Mode=OneWay, Converter={StaticResource cvtStatusIcon}}" />
+
+                                    <Label
+                                        Style="{StaticResource RegularLightText16}"
+                                        Text="{Binding Level_No, StringFormat='Level {0}:'}"
+                                        VerticalOptions="Center"
+                                        Margin="2,0,0,0" />
+
+                                    <Label
+                                        Style="{StaticResource MediumLightText16}"
+                                        Text="{Binding Word}"
+                                        VerticalOptions="Center"
+                                        TextTransform="Uppercase"/>
+
+                                </HorizontalStackLayout>
+
+                                <!-- Meaning -->
+                                <Label
+                                    Style="{StaticResource RegularLightText12}"
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="Fill"
+                                    Grid.Row="2"
+                                    Grid.Column="0"
+                                    Text="{Binding Meaning, StringFormat='This word means, &quot;{0}&quot;'}"
+                                    LineBreakMode="WordWrap" />
+
+                                <!-- Wordle Boxes -->
+                                <VerticalStackLayout
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="Start"
+                                    BindableLayout.ItemsSource="{Binding Level_Details, Mode=OneWay}"
+                                    Grid.Row="2"
+                                    Grid.Column="2"
+                                    Spacing="2">
+
+                                    <BindableLayout.ItemTemplate>
+                                        <DataTemplate>
+
+                                            <HorizontalStackLayout
+                                                HorizontalOptions="Start"
+                                                VerticalOptions="Start"
+                                                BindableLayout.ItemsSource="{Binding Display_Chars, Mode=OneWay}"
+                                                Spacing="2">
+
+                                                <BindableLayout.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Border
+                                                            BackgroundColor="{Binding Background_Color}"
+                                                            Padding="0"
+                                                            Stroke="{StaticResource WordleBorderColor}"
+                                                            WidthRequest="18"
+                                                            HeightRequest="20">
+                                                            <Border.StrokeShape>
+                                                                <RoundRectangle CornerRadius="2"/>
+                                                            </Border.StrokeShape>
+
+                                                            <Label
+                                                                HorizontalOptions="Fill"
+                                                                VerticalOptions="Center"
+                                                                HorizontalTextAlignment="Center"
+                                                                VerticalTextAlignment="Center"
+                                                                Style="{StaticResource SmallWordleBoxTextStyle}"
+                                                                TextColor="{Binding Text_Color}"
+                                                                Text="{Binding Alphabet}"/>
+
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </BindableLayout.ItemTemplate>
+
+                                            </HorizontalStackLayout>
+
+                                        </DataTemplate>
+                                    </BindableLayout.ItemTemplate>
+
+                                </VerticalStackLayout>
+
+                            </Grid>
+
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+        </Grid>
+
+    </views:ViewBase.PageContent>
+</views:ViewBase>

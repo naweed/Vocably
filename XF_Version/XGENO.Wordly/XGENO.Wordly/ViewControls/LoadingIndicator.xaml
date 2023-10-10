@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Frame
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="Transparent"
+    Padding="20,6,20,12"
+    HasShadow="False"
+    IsVisible="False"
+    x:Class="XGENO.Wordly.ViewControls.LoadingIndicator">
+
+    <StackLayout
+        Spacing="4"
+        BackgroundColor="Transparent"
+        Margin="32,0">
+
+        <ActivityIndicator
+            x:Name="actIndicator"
+            IsRunning="False"
+            WidthRequest="44"
+            HeightRequest="44"
+            Color="{StaticResource LightTextColor}"
+            Scale="{OnPlatform iOS=1.3, Android=1.0}" />
+
+        <Label
+            x:Name="lblLoadingText"
+            Style="{StaticResource RegularLightText14}"
+            LineBreakMode="WordWrap"
+            HorizontalOptions="Center"
+            HorizontalTextAlignment="Center" />
+
+    </StackLayout>
+
+</Frame>

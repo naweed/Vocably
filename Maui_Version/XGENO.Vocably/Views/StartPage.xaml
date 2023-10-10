@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:ViewBase 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:XGENO.Vocably.Views"
+    xmlns:viewmodels="clr-namespace:XGENO.Vocably.ViewModels"
+    xmlns:controls="clr-namespace:XGENO.Vocably.ViewControls"
+    x:Class="XGENO.Vocably.Views.StartPage"
+    x:TypeArguments="viewmodels:StartPageViewModel"
+    ContentDisplayMode="NavigationBar"
+    PageMode="Menu"
+    x:Name="RootPage"
+    PageTitle="{Binding Title}">
+
+    <views:ViewBase.PageContent>
+        <Grid
+            Margin="36,24"
+            RowDefinitions="*,Auto">
+
+            <!-- Error Indicator -->
+            <controls:ErrorIndicator
+                Grid.RowSpan="2"
+                Grid.Row="0"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                IsError="{Binding IsErrorState, Mode=OneWay}"
+                ErrorImage="{Binding ErrorImage, Mode=OneWay}"
+                ErrorText="{Binding ErrorMessage, Mode=OneWay}" />
+
+
+            <Border
+                Grid.Row="1"
+                Padding="32,16"
+                BackgroundColor="#282828"
+                Stroke="Transparent"
+                HorizontalOptions="Fill"
+                VerticalOptions="Start"
+                Margin="0,0,0,16"
+                IsVisible="{Binding DataLoaded, Mode=OneWay}">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12"/>
+                </Border.StrokeShape>
+
+                <Label
+                    HorizontalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    LineHeight="1.15"
+                    LineBreakMode="WordWrap"
+                    Margin="0,0,0,2">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding HeroText}" FontSize="14" FontFamily="RegularFont" FontAutoScalingEnabled="False" TextColor="White" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+            </Border>
+
+
+
+            <!-- Play Button -->
+            <Grid
+                Grid.Row="0"
+                HorizontalOptions="Center"
+                IsVisible="{Binding IsButtonVisible, Mode=OneWay}"
+                VerticalOptions="Center">
+
+                <Ellipse
+                    x:Name="borderGradientOuter"
+                    StrokeThickness="0"
+                    Stroke="#44C5C5C5"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    WidthRequest="192"
+                    HeightRequest="192" />
+
+                <Ellipse
+                    x:Name="borderGradientMiddle"
+                    StrokeThickness="0"
+                    Stroke="#55C5C5C5"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    WidthRequest="176"
+                    HeightRequest="176" />
+
+                <Ellipse
+                    x:Name="borderGradientInner"
+                    StrokeThickness="0"
+                    Stroke="#77C5C5C5"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    WidthRequest="160"
+                    HeightRequest="160"/>
+
+                <Button
+                    x:Name="btnPlayGame"
+                    Style="{StaticResource PageButtonStyle}"
+                    Text="PLAY"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Command="{Binding PlayGameCommand, Mode=OneWay}"
+                    BorderColor="#BBC5C5C5"
+                    BorderWidth="4"
+                    HeightRequest="142"
+                    WidthRequest="142"
+                    CornerRadius="71"
+                    FontSize="32" />
+
+            </Grid>
+
+
+            <!-- Busy Indicator -->
+            <controls:LoadingIndicator
+                Grid.RowSpan="2"
+                Grid.Row="0"
+                IsBusy="{Binding IsBusy, Mode=OneWay}"
+                LoadingText="{Binding LoadingText, Mode=OneWay}"
+                HorizontalOptions="Center"
+                VerticalOptions="Center" />
+
+        </Grid>
+    </views:ViewBase.PageContent>
+    
+</views:ViewBase>
